@@ -47,7 +47,8 @@ class ParkTest extends AbstractLayerTest {
 
   @Test
   void testAbotiginalLand() {
-    assertFeatures(13, List.of(Map.of(
+    // Trnasitopia: We don't consider Aboriginal Lands to be parks!
+    assertFeatures(13, List.of(/*Map.of(
       "_layer", "park",
       "_type", "polygon",
       "class", "aboriginal_lands",
@@ -62,7 +63,7 @@ class ParkTest extends AbstractLayerTest {
       "name", "Hualapai Tribe",
       "_minzoom", 5,
       "_maxzoom", 14
-    )), process(polygonFeature(Map.of(
+    )*/), process(polygonFeature(Map.of(
       "boundary", "aboriginal_lands",
       "name", "Hualapai Tribe",
       "protection_title", "National Park"
@@ -75,7 +76,7 @@ class ParkTest extends AbstractLayerTest {
     assertFeatures(13, List.of(Map.of(
       "_layer", "park",
       "_type", "polygon",
-      "class", "protected_area",
+      "class", "park",
       "name", "Small park",
       "_minpixelsize", 2d,
       "_minzoom", 4,
@@ -83,13 +84,13 @@ class ParkTest extends AbstractLayerTest {
     ), Map.of(
       "_layer", "park",
       "_type", "point",
-      "class", "protected_area",
+      "class", "park",
       "name", "Small park",
       "name_int", "Small park",
       "_minzoom", 11,
       "_maxzoom", 14
     )), process(polygonFeatureWithArea(z11area, Map.of(
-      "boundary", "protected_area",
+      "leisure", "park",
       "name", "Small park",
       "wikipedia", "en:Small park"
     ))));
@@ -102,7 +103,7 @@ class ParkTest extends AbstractLayerTest {
       "_minzoom", 5,
       "_maxzoom", 14
     )), process(polygonFeatureWithArea(1, Map.of(
-      "boundary", "protected_area",
+      "leisure", "park",
       "name", "Small park",
       "wikidata", "Q123"
     ))));
@@ -131,21 +132,21 @@ class ParkTest extends AbstractLayerTest {
       )),
 
       getLabelSortKey(1, Map.of(
-        "boundary", "protected_area",
+        "leisure", "park",
         "name", "a",
         "wikipedia", "en:park"
       )),
       getLabelSortKey(1e-10, Map.of(
-        "boundary", "protected_area",
+        "leisure", "park",
         "name", "a",
         "wikipedia", "en:Park"
       )),
       getLabelSortKey(1, Map.of(
-        "boundary", "protected_area",
+        "leisure", "park",
         "name", "a"
       )),
       getLabelSortKey(1e-10, Map.of(
-        "boundary", "protected_area",
+        "leisure", "park",
         "name", "a"
       ))
     );

@@ -160,11 +160,14 @@ class OpenMapTilesTest {
   }
 
   @Test
-  void testLandcover() {
-    assertNumFeatures("landcover", Map.of(
-      "class", "grass",
-      "subclass", "park"
+  void testPark() {
+    assertNumFeatures("park", Map.of(
+      "class", "park"
     ), 14, 20, Polygon.class);
+  }
+
+  @Test
+  void testLandcover() {
     assertNumFeatures("landcover", Map.of(
       "class", "grass",
       "subclass", "garden"

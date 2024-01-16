@@ -157,7 +157,7 @@ public class Tables {
         "grassland", "meadow", "forest", "village_green", "recreation_ground"),
       matchAny("natural", "wood", "wetland", "fell", "grassland", "heath", "scrub", "shrubbery", "tundra", "glacier",
         "bare_rock", "scree", "beach", "sand", "dune"),
-      matchAny("leisure", "park", "garden", "golf_course"), matchAny("wetland", "bog", "swamp", "wet_meadow", "marsh",
+      matchAny("leisure", "garden", "golf_course"), matchAny("wetland", "bog", "swamp", "wet_meadow", "marsh",
         "reedbed", "saltern", "tidalflat", "saltmarsh", "mangrove")),
       matchType("polygon"));
 
@@ -248,8 +248,14 @@ public class Tables {
     }
 
     /** Imposm3 "mapping" to filter OSM elements that should appear in this "table". */
-    public static final Expression MAPPING = and(or(matchAny("leisure", "nature_reserve"),
-      matchAny("boundary", "national_park", "protected_area", "aboriginal_lands")), matchType("polygon"));
+    public static final Expression MAPPING = and(
+      or(
+        matchAny("leisure", "park", "nature_reserve"),
+        matchAny("boundary", "national_park"),
+        and(matchAny("boundary", "protected_area"), matchAny("protection_title", "Regional Park"))
+      ),
+      matchType("polygon")
+    );
 
     /**
      * Interface for layer implementations to extend to subscribe to OSM elements filtered and parsed as
@@ -724,7 +730,7 @@ public class Tables {
       matchAny("historic", "monument", "castle", "ruins"),
       matchAny("landuse", "basin", "brownfield", "cemetery", "reservoir", "winter_sports"),
       matchAny("leisure", "dog_park", "escape_game", "garden", "golf_course", "ice_rink", "hackerspace", "marina",
-        "miniature_golf", "park", "pitch", "playground", "sports_centre", "stadium", "swimming_area", "swimming_pool",
+        "miniature_golf", "pitch", "playground", "sports_centre", "stadium", "swimming_area", "swimming_pool",
         "water_park"),
       matchAny("office", "accountant", "advertising_agency", "architect", "association", "bail_bond_agent", "charity",
         "company", "construction_company", "consulting", "cooperative", "courier", "coworking", "diplomatic",
@@ -803,7 +809,7 @@ public class Tables {
       matchAny("historic", "monument", "castle", "ruins"),
       matchAny("landuse", "basin", "brownfield", "cemetery", "reservoir", "winter_sports"),
       matchAny("leisure", "dog_park", "escape_game", "garden", "golf_course", "ice_rink", "hackerspace", "marina",
-        "miniature_golf", "park", "pitch", "playground", "sports_centre", "stadium", "swimming_area", "swimming_pool",
+        "miniature_golf", "pitch", "playground", "sports_centre", "stadium", "swimming_area", "swimming_pool",
         "water_park"),
       matchAny("office", "accountant", "advertising_agency", "architect", "association", "bail_bond_agent", "charity",
         "company", "construction_company", "consulting", "cooperative", "courier", "coworking", "diplomatic",

@@ -25,10 +25,7 @@ public class VerifyMonaco {
     Verify verify = Verify.verify(mbtiles);
     verify.checkMinFeatureCount(MONACO_BOUNDS, "building", Map.of(), 13, 14, 100, Polygon.class);
     verify.checkMinFeatureCount(MONACO_BOUNDS, "transportation", Map.of(), 10, 14, 5, LineString.class);
-    verify.checkMinFeatureCount(MONACO_BOUNDS, "landcover", Map.of(
-      "class", "grass",
-      "subclass", "park"
-    ), 14, 10, Polygon.class);
+    verify.checkMinFeatureCount(MONACO_BOUNDS, "park", Map.of("class", "park"), 14, 10, Polygon.class);
     verify.checkMinFeatureCount(MONACO_BOUNDS, "water", Map.of("class", "ocean"), 0, 14, 1, Polygon.class);
     verify.checkMinFeatureCount(MONACO_BOUNDS, "place", Map.of("class", "country"), 2, 14, 1, Point.class);
     return verify;
