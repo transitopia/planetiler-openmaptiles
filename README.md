@@ -11,6 +11,8 @@ After [installing Java 21+](https://adoptium.net/installation.html):
 ```bash
 # Build the project (use mvnw.cmd on windows):
 ./mvnw clean package
+# Force re-downloading of the newest data:
+rm data/sources/british_columbia.osm.pbf
 # Then run:
 java -jar target/planetiler-*-with-deps.jar --force --download --area=british-columbia --exclude-layers=housenumber,mountain_peak,poi,building --output=data/transitopia-base-bc.pmtiles
 ```
